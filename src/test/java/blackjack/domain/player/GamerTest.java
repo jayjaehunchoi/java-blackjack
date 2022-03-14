@@ -19,7 +19,7 @@ public class GamerTest {
     @Test
     @DisplayName("이름이 공백인 경우 예외를 발생시킨다.")
     void createGamerExceptionNameEmpty() {
-        assertThatThrownBy(() -> new Gamer(""))
+        assertThatThrownBy(() -> new Gamer("", 1000))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] Gamer의 이름은 공백일 수 없습니다.");
     }
@@ -27,9 +27,17 @@ public class GamerTest {
     @Test
     @DisplayName("이름이 딜러인경우 예외를 발생시킨다.")
     void createGamerExceptionNameDealer() {
-        assertThatThrownBy(() -> new Gamer("딜러"))
+        assertThatThrownBy(() -> new Gamer("딜러", 1000))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] Gamer의 이름은 딜러일 수 없습니다.");
+    }
+
+    @Test
+    @DisplayName("입력 금액이 0원 이하일 경우 예외를 발생시킨다.")
+    void createGamerExceptionMoneyEqualStandard() {
+        assertThatThrownBy(() -> new Gamer("huni", 0))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 베팅은 1원부터 가능합니다.");
     }
 
     @Test
@@ -79,12 +87,12 @@ public class GamerTest {
     @Test
     @DisplayName("gamer가 hit한다는 응답을 받는다")
     void checkGamerAnswerHit() {
-        Gamer gamer = new Gamer("judy");
+        Gamer gamer = new Gamer("judy", 1000);
         assertTrue(gamer.isHit(Answer.YES));
     }
 
     private Gamer initGamer() {
-        Gamer gamer = new Gamer("judy");
+        Gamer gamer = new Gamer("judy", 1000);
 
         gamer.receiveCard(new Card(Suit.CLOVER, Denomination.JACK));
         gamer.receiveCard(new Card(Suit.DIAMOND, Denomination.ACE));

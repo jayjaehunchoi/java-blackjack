@@ -14,12 +14,20 @@ public class Gamer extends Player {
     private static final int GAMER_OPEN_CARD_NUMBER = 2;
 
     private final String name;
+    private int bet;
 
-    public Gamer(final String name) {
+    public Gamer(String name) {
+        super(new Cards());
+        this.name = name;
+    }
+
+    public Gamer(final String name, final int bet) {
         super(new Cards());
         checkEmptyName(name);
         checkBannedName(name);
+        checkBetRightRange(bet);
         this.name = name;
+        this.bet = bet;
     }
 
     private void checkEmptyName(final String name) {
@@ -31,6 +39,12 @@ public class Gamer extends Player {
     private void checkBannedName(final String name) {
         if (name.equals(Dealer.DEALER_NAME)) {
             throw new IllegalArgumentException("[ERROR] Gamer의 이름은 딜러일 수 없습니다.");
+        }
+    }
+
+    private void checkBetRightRange(int bet) {
+        if (bet <= 0) {
+            throw new IllegalArgumentException("[ERROR] 베팅은 1원부터 가능합니다.");
         }
     }
 
