@@ -14,14 +14,9 @@ public class Gamer extends Player {
     private static final int GAMER_OPEN_CARD_NUMBER = 2;
 
     private final String name;
-    private int bet;
+    private final Bet bet;
 
-    public Gamer(String name) {
-        super(new Cards());
-        this.name = name;
-    }
-
-    public Gamer(final String name, final int bet) {
+    public Gamer(final String name, final Bet bet) {
         super(new Cards());
         checkEmptyName(name);
         checkBannedName(name);
