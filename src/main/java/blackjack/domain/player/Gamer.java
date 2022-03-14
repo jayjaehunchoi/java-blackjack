@@ -25,7 +25,6 @@ public class Gamer extends Player {
         super(new Cards());
         checkEmptyName(name);
         checkBannedName(name);
-        checkBetRightRange(bet);
         this.name = name;
         this.bet = bet;
     }
@@ -39,12 +38,6 @@ public class Gamer extends Player {
     private void checkBannedName(final String name) {
         if (name.equals(Dealer.DEALER_NAME)) {
             throw new IllegalArgumentException("[ERROR] Gamer의 이름은 딜러일 수 없습니다.");
-        }
-    }
-
-    private void checkBetRightRange(int bet) {
-        if (bet <= 0) {
-            throw new IllegalArgumentException("[ERROR] 베팅은 1원부터 가능합니다.");
         }
     }
 
