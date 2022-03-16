@@ -51,12 +51,12 @@ public class BlackJackGameTest {
         BlackJackGame blackJackGame = new BlackJackGame(dealer, new Gamers(List.of(judy, huni)));
 
         //when
-        Map<Gamer, ResultStrategy> gameResult = blackJackGame.calculateBlackJackResult().getResult();
+        Map<Gamer, Integer> gameResult = blackJackGame.calculateBlackJackResult().getResult();
 
         //then
         assertAll(
-                () -> assertThat(gameResult.get(judy)).isInstanceOf(Win.class),
-                () -> assertThat(gameResult.get(huni)).isInstanceOf(Lose.class)
+                () -> assertThat(gameResult.get(judy)).isEqualTo(1000),
+                () -> assertThat(gameResult.get(huni)).isEqualTo(-1000)
         );
     }
 }

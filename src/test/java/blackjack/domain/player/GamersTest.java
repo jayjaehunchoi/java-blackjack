@@ -32,7 +32,7 @@ public class GamersTest {
         gamer.receiveCard(new Card(Suit.DIAMOND, Denomination.JACK));
         Gamers gamers = new Gamers(List.of(gamer));
 
-        assertThat(gamers.compareResult(11).get(gamer)).isInstanceOf(Lose.class);
+        assertThat(gamers.compareResult(11).get(gamer)).isEqualTo(-1000);
     }
 
     @Test
@@ -42,7 +42,7 @@ public class GamersTest {
         gamer.receiveCard(new Card(Suit.DIAMOND, Denomination.JACK));
         Gamers gamers = new Gamers(List.of(gamer));
 
-        assertThat(gamers.compareResult(9).get(gamer)).isInstanceOf(Win.class);
+        assertThat(gamers.compareResult(9).get(gamer)).isEqualTo(1000);
     }
 
     @Test
@@ -52,6 +52,6 @@ public class GamersTest {
         gamer.receiveCard(new Card(Suit.DIAMOND, Denomination.JACK));
         Gamers gamers = new Gamers(List.of(gamer));
 
-        assertThat(gamers.compareResult(10).get(gamer)).isInstanceOf(Draw.class);
+        assertThat(gamers.compareResult(10).get(gamer)).isEqualTo(0);
     }
 }

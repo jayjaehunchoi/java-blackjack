@@ -99,8 +99,7 @@ public class BlackJackRunner {
     private static void payOuts() {
         OutputView.printFinalResult(blackJackGame.getDealer(), blackJackGame.getGamers());
         BlackJackResult blackJackResult = blackJackGame.calculateBlackJackResult();
-        Map<Gamer, Integer> gamerReturns = blackJackResult.calculateGamerReturn();
-        OutputView.printFinalResultBoard(blackJackResult.calculateDealerReturn(gamerReturns), gamerReturns);
+        OutputView.printFinalResultBoard(blackJackResult.calculateDealerReturn(), blackJackResult.getResult());
     }
 
 }

@@ -55,8 +55,8 @@ public class Gamer extends Player {
         return answer == Answer.YES;
     }
 
-    public Bet getBet() {
-        return bet;
+    public int getBettingAmount() {
+        return bet.getAmount();
     }
 
     @Override

@@ -22,9 +22,9 @@ public class BlackJackResultTest {
 
         Gamers gamers = new Gamers(List.of(huni, hani));
 
-        Map<Gamer, ResultStrategy> map = gamers.getGamers().stream()
+        Map<Gamer, Integer> map = gamers.getGamers().stream()
                 .collect(Collectors.toMap(gamer -> gamer,
-                        gamer -> new Win()));
+                        gamer -> 1000));
 
         BlackJackResult result = new BlackJackResult(map);
         assertThat(result.getResult().keySet()).contains(new Gamer("huni", new Bet(1000)),
@@ -32,62 +32,14 @@ public class BlackJackResultTest {
     }
 
     @Test
-    @DisplayName("게이머의 수익을 계산한다. - 블랙잭")
-    void calculateReturnOfGamersBlackJack() {
-        Gamer huni = new Gamer("huni", new Bet(1000));
-
-        Map<Gamer, ResultStrategy> map = new HashMap<>();
-        map.put(huni, new BlackJack());
-
-        BlackJackResult result = new BlackJackResult(map);
-        assertThat(result.calculateGamerReturn().get(huni)).isEqualTo(1500);
-    }
-
-    @Test
-    @DisplayName("게이머의 수익을 계산한다. - 승리")
-    void calculateReturnOfGamersWin() {
-        Gamer huni = new Gamer("huni", new Bet(1000));
-
-        Map<Gamer, ResultStrategy> map = new HashMap<>();
-        map.put(huni, new Win());
-
-        BlackJackResult result = new BlackJackResult(map);
-        assertThat(result.calculateGamerReturn().get(huni)).isEqualTo(1000);
-    }
-
-    @Test
-    @DisplayName("게이머의 수익을 계산한다. - 무승부")
-    void calculateReturnOfGamersDraw() {
-        Gamer huni = new Gamer("huni", new Bet(1000));
-
-        Map<Gamer, ResultStrategy> map = new HashMap<>();
-        map.put(huni, new Draw());
-
-        BlackJackResult result = new BlackJackResult(map);
-        assertThat(result.calculateGamerReturn().get(huni)).isEqualTo(0);
-    }
-
-    @Test
-    @DisplayName("게이머의 수익을 계산한다. - 패배")
-    void calculateReturnOfGamersLose() {
-        Gamer huni = new Gamer("huni", new Bet(1000));
-
-        Map<Gamer, ResultStrategy> map = new HashMap<>();
-        map.put(huni, new Lose());
-
-        BlackJackResult result = new BlackJackResult(map);
-        assertThat(result.calculateGamerReturn().get(huni)).isEqualTo(-1000);
-    }
-
-    @Test
     @DisplayName("딜러의 이익 총합을 계산한다.")
     void calculateReturnOfDealer() {
         Gamer huni = new Gamer("huni", new Bet(1000));
 
-        Map<Gamer, ResultStrategy> map = new HashMap<>();
-        map.put(huni, new Lose());
+        Map<Gamer, Integer> map = new HashMap<>();
+        map.put(huni, 1000);
 
         BlackJackResult result = new BlackJackResult(map);
-        assertThat(result.calculateDealerReturn(result.calculateGamerReturn())).isEqualTo(1000);
+        assertThat(result.calculateDealerReturn()).isEqualTo(-1000);
     }
 }
