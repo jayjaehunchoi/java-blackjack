@@ -59,24 +59,4 @@ public class BlackJackGameTest {
                 () -> assertThat(gameResult.get(huni)).isInstanceOf(Lose.class)
         );
     }
-
-   /* @Test
-    @DisplayName("dealer의 승패를 계산한다.")
-    void calculateDealerResult() {
-        // given
-        Player dealer = new Dealer();
-        dealer.receiveCard(new Card(Suit.DIAMOND, Denomination.FIVE));
-
-        Gamer judy = new Gamer("judy", new Bet(1000));
-        judy.receiveCard(new Card(Suit.CLOVER, Denomination.SIX));
-
-        Gamer huni = new Gamer("huni", new Bet(1000));
-        huni.receiveCard(new Card(Suit.DIAMOND, Denomination.FOUR));
-
-        BlackJackGame blackJackGame = new BlackJackGame(dealer, new Gamers(List.of(judy, huni)));
-
-        //when
-        int dealerResult = blackJackGame.calculateDealerResultBoard(blackJackGame.calculateResultBoard());
-        assertThat(dealerResult).isEqualTo(0);
-    }*/
 }
