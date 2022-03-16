@@ -10,7 +10,7 @@ public class BlackJackResult {
 
     private static final int DEALER_CALCULATE_UNIT = -1;
 
-    public final Map<Gamer, ResultStrategy> result;
+    private final Map<Gamer, ResultStrategy> result;
 
     public BlackJackResult(final Map<Gamer, ResultStrategy> result) {
         this.result = result;
